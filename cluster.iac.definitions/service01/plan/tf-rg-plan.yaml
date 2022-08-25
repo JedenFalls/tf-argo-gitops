@@ -1,6 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
+  name: service01-tf-plan
   generateName: service01-tf-plan-
   annotations:
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
