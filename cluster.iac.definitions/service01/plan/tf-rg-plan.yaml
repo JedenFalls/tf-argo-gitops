@@ -2,8 +2,10 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: service01-tf-plan
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
-  ttlSecondsAfterFinished: 0
   template:
     spec:
       restartPolicy: Never
