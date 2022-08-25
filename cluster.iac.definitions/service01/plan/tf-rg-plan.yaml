@@ -1,19 +1,12 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: tf-plan
-  labels:
-    app: iac
+  name: service01-tf-plan
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: iac
   template:
-    metadata:
-      labels:
-        app: iac
     spec:
+      restartPolicy: Never
+
       volumes:
       - name: shared-data
         emptyDir: {} 
@@ -47,4 +40,6 @@ spec:
             name: azcreds
         volumeMounts:
         - mountPath: /iac
-          name: shared-data
+          name: shared-data     
+
+  backoffLimit: 0
