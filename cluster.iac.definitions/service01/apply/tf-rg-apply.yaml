@@ -13,7 +13,7 @@ spec:
       
       initContainers:
       - name: tf-init
-        image: adhocam/azurerm:5
+        image: adhocam/azurerm:6
         imagePullPolicy: Never
         command:
         - sh
@@ -29,7 +29,7 @@ spec:
 
       containers:
       - name: tf-apply
-        image: adhocam/azurerm:5
+        image: adhocam/azurerm:6
         imagePullPolicy: Never
         command:
         - sh

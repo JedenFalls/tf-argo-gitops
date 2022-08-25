@@ -13,7 +13,7 @@ spec:
       
       initContainers:
       - name: tf-init
-        image: adhocam/azurerm:5
+        image: adhocam/azurerm:6
         command:
         - sh
         - "-c"
@@ -28,7 +28,7 @@ spec:
 
       containers:
       - name: tf-plan
-        image: adhocam/azurerm:5
+        image: adhocam/azurerm:6
         command:
         - sh
         - "-c"
