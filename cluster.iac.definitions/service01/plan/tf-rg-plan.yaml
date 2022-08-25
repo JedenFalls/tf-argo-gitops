@@ -1,41 +1,52 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: service01-tf-plan
+  name: tf-plan
+  labels:
+    app: iac
 spec:
-  restartPolicy: Never
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iac
+  template:
+    metadata:
+      labels:
+        app: iac
+    spec:
+      restartPolicy: Never
 
-  volumes:
-  - name: shared-data
-    emptyDir: {} 
-  
-  initContainers:
-  - name: tf-init
-    image: adhocam/azurerm:4
-    command:
-    - sh
-    - "-c"
-    - |
-      cd /terraform/service01
-      terraform init
-      cp -r /terraform /iac
-      ls /iac/terraform -al
-    volumeMounts:
-    - mountPath: /iac
-      name: shared-data
+      volumes:
+      - name: shared-data
+        emptyDir: {} 
+      
+      initContainers:
+      - name: tf-init
+        image: adhocam/azurerm:4
+        command:
+        - sh
+        - "-c"
+        - |
+          cd /terraform/service01
+          terraform init
+          cp -r /terraform /iac
+          ls /iac/terraform -al
+        volumeMounts:
+        - mountPath: /iac
+          name: shared-data
 
-  containers:
-  - name: tf-plan
-    image: adhocam/azurerm:4
-    command:
-    - sh
-    - "-c"
-    - |
-      cd iac/terraform/service01
-      terraform plan
-    envFrom:
-    - secretRef:
-        name: azcreds
-    volumeMounts:
-    - mountPath: /iac
-      name: shared-data 
+      containers:
+      - name: tf-plan
+        image: adhocam/azurerm:4
+        command:
+        - sh
+        - "-c"
+        - |
+          cd iac/terraform/service01
+          terraform plan
+        envFrom:
+        - secretRef:
+            name: azcreds
+        volumeMounts:
+        - mountPath: /iac
+          name: shared-data
