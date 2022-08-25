@@ -3,7 +3,7 @@ kind: Job
 metadata:
   generateName: service01-tf-plan-
   annotations:
-    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   template:
