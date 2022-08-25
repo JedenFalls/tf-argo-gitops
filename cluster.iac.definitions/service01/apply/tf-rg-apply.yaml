@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: service01-tf-apply
 spec:
+  ttlSecondsAfterFinished: 0
   template:
     spec:
       restartPolicy: Never
