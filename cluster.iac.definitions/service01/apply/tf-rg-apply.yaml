@@ -3,7 +3,6 @@ kind: Job
 metadata:
   name: service01-tf-apply
   annotations:
-    argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   template:
