@@ -13,7 +13,7 @@ terraform {
     resource_group_name  = "rg-gitops-tfstate"
     storage_account_name = "sagitopstfstate"
     container_name       = "tfstate"
-    key                  = "service02.tfstate"
+    key                  = "service01.tfstate"
   }
 }
 
