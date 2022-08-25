@@ -1,5 +1,5 @@
 output "name" {
-  value = azurerm_storage_account.sa.namie
+  value = azurerm_storage_account.sa.name
 }
 
 output "id" {
