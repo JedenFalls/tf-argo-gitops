@@ -1,0 +1,47 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: tf-azurerm-service01-plan
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+
+      volumes:
+      - name: shared-data
+        emptyDir: {} 
+      
+      initContainers:
+      - name: tf-init
+        image: adhocam/tf.azurerm:v1.0
+        imagePullPolicy: Never
+        command:
+        - sh
+        - "-c"
+        - |
+          cd /terraform/service01
+          terraform init
+          cp -r /terraform /iac
+          ls /iac/terraform -al
+        volumeMounts:
+        - mountPath: /iac
+          name: shared-data
+
+      containers:
+      - name: tf-plan
+        image: adhocam/tf.azurerm:v1.0
+        imagePullPolicy: Never
+        command:
+        - sh
+        - "-c"
+        - |
+          cd iac/terraform/service01
+          terraform plan
+        envFrom:
+        - secretRef:
+            name: azcreds
+        volumeMounts:
+        - mountPath: /iac
+          name: shared-data     
+
+  backoffLimit: 0

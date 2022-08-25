@@ -1,0 +1,11 @@
+# Compiled files
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+*.tfstate.lock.hcl
+
+# Directories
+.terraform/
+
+# Secret files
+az-creds.yaml
