@@ -12,3 +12,10 @@ module "sa" {
   rg_name  = module.rg.name
   location = module.rg.location
 }
+
+module "sa-container" {
+  source = "../modules/azurerm.sacontainer"
+
+  name    = var.sa_cntr_name
+  sa_name = module.sa.name
+}
