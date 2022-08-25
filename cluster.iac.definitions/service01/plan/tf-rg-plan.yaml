@@ -17,7 +17,7 @@ spec:
     - "-c"
     - |
       cd /terraform/service01
-      terraform init
+      terraform init --reconfigure
       cp -r /terraform /iac
       ls /iac/terraform -al
     volumeMounts:
