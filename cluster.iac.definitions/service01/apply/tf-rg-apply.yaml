@@ -14,7 +14,6 @@ spec:
       initContainers:
       - name: tf-init
         image: adhocam/azurerm:2.0.0
-        imagePullPolicy: Never
         command:
         - sh
         - "-c"
@@ -30,7 +29,6 @@ spec:
       containers:
       - name: tf-apply
         image: adhocam/azurerm:2.0.0
-        imagePullPolicy: Never
         command:
         - sh
         - "-c"
