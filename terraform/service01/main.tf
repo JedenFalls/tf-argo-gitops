@@ -20,9 +20,9 @@ module "sa-container-01" {
   sa_name = module.sa.name
 }
 
-# module "sa-container-02" {
-#   source = "../modules/azurerm.sacontainer"
+module "sa-container-02" {
+  source = "../modules/azurerm.sacontainer"
 
-#   name    = "${var.sa_cntr_name}02"
-#   sa_name = module.sa.name
-# }
+  name    = "${var.sa_cntr_name}02"
+  sa_name = module.sa.name
+}
