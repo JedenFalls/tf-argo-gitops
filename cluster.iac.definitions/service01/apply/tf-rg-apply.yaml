@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: service01-tf-apply-9
+  name: service01-tf-apply-10
 spec:
   restartPolicy: Never
 
@@ -11,7 +11,7 @@ spec:
   
   initContainers:
   - name: tf-init
-    image: adhocam/azurerm:9
+    image: adhocam/azurerm:10
     command:
     - sh
     - "-c"
@@ -29,7 +29,7 @@ spec:
 
   containers:
   - name: tf-apply
-    image: adhocam/azurerm:9
+    image: adhocam/azurerm:10
     command:
     - sh
     - "-c"
