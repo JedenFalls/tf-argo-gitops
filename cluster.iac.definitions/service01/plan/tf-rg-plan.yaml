@@ -20,6 +20,9 @@ spec:
       terraform init
       cp -r /terraform /iac
       ls /iac/terraform -al
+    envFrom:
+    - secretRef:
+        name: azcreds
     volumeMounts:
     - mountPath: /iac
       name: shared-data

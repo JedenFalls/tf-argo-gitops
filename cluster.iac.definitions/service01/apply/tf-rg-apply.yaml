@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: service01-tf-apply-8
+  name: service01-tf-apply-9
 spec:
   restartPolicy: Never
 
@@ -11,7 +11,7 @@ spec:
   
   initContainers:
   - name: tf-init
-    image: adhocam/azurerm:8
+    image: adhocam/azurerm:9
     command:
     - sh
     - "-c"
@@ -20,13 +20,16 @@ spec:
       terraform init
       cp -r /terraform /iac
       ls /iac/terraform -al
+    envFrom:
+    - secretRef:
+        name: azcreds
     volumeMounts:
     - mountPath: /iac
       name: shared-data
 
   containers:
   - name: tf-apply
-    image: adhocam/azurerm:8
+    image: adhocam/azurerm:9
     command:
     - sh
     - "-c"
